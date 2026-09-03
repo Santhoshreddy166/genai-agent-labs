@@ -1,0 +1,75 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv
+
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Vector DB & Cache directories
+chroma_db/
+chroma_data/
+faiss_index/
+.chroma/
+data/cache/
+experiments/**/chroma_db/
+experiments/**/faiss_index/
+
+# PyTorch / HuggingFace checkpoints & cache
+checkpoints/
+lora_output/
+*.pt
+*.pth
+*.bin
+*.safetensors
+.cache/
+huggingface/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & scratch files
+*.log
+scratch/
+results/*.csv
+results/*.png

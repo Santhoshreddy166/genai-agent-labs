@@ -1,0 +1,18 @@
+
+Title: Engineering Autonomous AI Agents: Architecture & Patterns
+
+1. Overview
+Modern Generative AI has transitioned from single-prompt stateless completions to stateful agentic workflows. An AI Agent combines a core Reasoning Engine (LLM), Memory (short-term conversational context and long-term vector embeddings), Planning (decomposition and reflection), and Tool Use (APIs, databases, and code execution environments).
+
+2. The ReAct Pattern
+The Reason + Act (ReAct) paradigm interleaves verbal reasoning traces with task-specific actions. Instead of guessing an answer directly, the agent:
+- Generates a 'Thought' explaining its logical step.
+- Emits an 'Action' selecting a registered tool and its arguments.
+- Receives an 'Observation' with the raw tool output.
+- Repeats until a final synthesized answer is reached.
+
+3. Guardrails and Safety
+Autonomous agents with tool access represent operational risk if left unconstrained. Crucial architectural requirements include:
+- Execution boundaries: Read-only database views and parameter whitelisting.
+- Human-in-the-loop triggers for high-stakes actions (financial transfers, outbound communications).
+- Strict output validation and deterministic schema parsing.

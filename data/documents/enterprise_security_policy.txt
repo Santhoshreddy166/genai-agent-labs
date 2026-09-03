@@ -1,0 +1,11 @@
+
+Enterprise AI Security and Governance Policy (v3.2)
+
+1. Data Classification and PII Sanitization
+Under GDPR, CCPA, and internal data handling directives, no prompt sent to third-party Foundation Model endpoints may contain cleartext PII (Personally Identifiable Information), including Social Security Numbers, Customer Payment Details, or Personal Email Addresses. All ingestion pipelines must apply deterministic tokenization or regex redaction prior to vector indexing.
+
+2. SQL and Database Protection
+Automated NL-to-SQL workflows and ReAct agents must operate strictly within least-privilege database connections. DDL (Data Definition Language) commands such as DROP TABLE, ALTER TABLE, or TRUNCATE TABLE, and bulk DML operations (DELETE, UPDATE) without verified tenant WHERE clauses are prohibited and must be intercepted by AST inspection guardrails.
+
+3. Hallucination Controls in RAG Systems
+To avoid misleading stakeholders, RAG pipelines must implement ground-truth verification. If retrieved similarity scores fall below the configurable threshold (default: cosine distance > 0.45), the model must state that insufficient verified enterprise context exists rather than extrapolating.

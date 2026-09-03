@@ -1,0 +1,49 @@
+# Core LLM & Agent Frameworks
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-core>=0.2.0
+langchain-openai>=0.1.7
+langgraph>=0.0.60
+pydantic>=2.7.0
+
+# Vector Databases & Embeddings
+chromadb>=0.5.0
+faiss-cpu>=1.8.0
+tiktoken>=0.7.0
+
+# Database & SQL
+sqlalchemy>=2.0.30
+sqlparse>=0.5.0
+
+# Web Frameworks & UI
+streamlit>=1.35.0
+altair<5
+
+# Multimodal & Visual Utilities
+pillow>=10.3.0
+
+# Data Science & Benchmarking
+pandas>=2.2.0
+numpy>=1.26.0
+tabulate>=0.9.0
+matplotlib>=3.8.0
+
+# Search & Scraping
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Environment & Config
+python-dotenv>=1.0.1
+pyyaml>=6.0.1
+
+# Evaluation & Testing
+pytest>=8.2.0
+pytest-asyncio>=0.23.0
+
+# Fine-Tuning & Model Optimization (CPU/GPU compatible base)
+transformers>=4.41.0
+peft>=0.11.0
+datasets>=2.19.0
+accelerate>=0.30.0
+# Note: For CUDA-accelerated quantization (8-bit/4-bit), install bitsandbytes:
+# pip install bitsandbytes

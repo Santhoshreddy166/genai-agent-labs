@@ -1,0 +1,10 @@
+
+Quantization and Parameter-Efficient Fine-Tuning (PEFT) Guide
+
+1. Post-Training Quantization (PTQ)
+Deploying large language models (LLMs) in production often encounters severe memory bandwidth bottlenecks. Quantization compresses weights from FP16 (16-bit floating point) to INT8 or INT4 representations:
+- INT8 (LLM.int8()): Employs vector-wise scaling to preserve outlier activations, typically yielding a 50% memory reduction with negligible perplexity degradation.
+- INT4 (NF4 - NormalFloat4): Used extensively in QLoRA, representing weights with optimal theoretical information density for zero-mean normal distributions.
+
+2. Parameter-Efficient Fine-Tuning (PEFT / LoRA)
+Low-Rank Adaptation (LoRA) freezes the pre-trained model weights and injects trainable rank decomposition matrices into each transformer layer (such as the query and value projection matrices). This slashes the number of trainable parameters by up to 99% while achieving performance parity with full parameter fine-tuning.
