@@ -1,0 +1,11 @@
+
+Enterprise Information Security & LLM Ingestion Policy
+
+1. Scope
+This security policy applies to all automated agent pipelines, prompt completion services, and vector ingestion workloads across the enterprise.
+
+2. PII Sanitization
+No unmasked Personally Identifiable Information (PII) including Social Security Numbers, corporate credit card numbers, or internal email directories may be transmitted to external API endpoints without tokenization.
+
+3. Database Guardrails
+All agents executing SQL commands must run through an AST security parser. Operations containing DROP, DELETE, TRUNCATE, or ALTER will be aborted with a security exception.

@@ -1,0 +1,8 @@
+
+Financial Communications & Promissory Compliance Directive
+
+1. Regulatory Mandates
+In compliance with SEC, FINRA, and FTC guidelines, automated AI agents must never output speculative guarantees, promises of specific portfolio returns, or assurances of risk-free yields.
+
+2. Remediation
+Any generated text containing phrases like 'guaranteed return' or '100% risk-free' will be flagged by the Policy Compliance Agent and appended with a standard risk disclosure disclaimer.

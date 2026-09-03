@@ -134,6 +134,59 @@ def seed_database():
     ]
     cursor.executemany("INSERT INTO compliance_policies (policy_code, category, description, severity) VALUES (?, ?, ?, ?)", policies_data)
 
+    # 6. Employees Table
+    cursor.execute("""
+    CREATE TABLE employees (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        role TEXT NOT NULL,
+        department TEXT NOT NULL,
+        salary REAL NOT NULL
+    );
+    """)
+    employees_data = [
+        ("Sarah Connor", "Principal AI Architect", "Engineering", 195000.00),
+        ("John Matrix", "Staff Security Engineer", "InfraSec", 180000.00),
+        ("Ellen Ripley", "Director of Product", "Product", 210000.00),
+        ("Martin Riggs", "Data Operations Specialist", "Analytics", 125000.00),
+    ]
+    cursor.executemany("INSERT INTO employees (name, role, department, salary) VALUES (?, ?, ?, ?)", employees_data)
+
+    # 7. Sales Table
+    cursor.execute("""
+    CREATE TABLE sales (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        rep_id INTEGER NOT NULL,
+        deal_name TEXT NOT NULL,
+        amount REAL NOT NULL,
+        close_date DATE NOT NULL,
+        FOREIGN KEY (rep_id) REFERENCES sales_reps(id)
+    );
+    """)
+    sales_data = [
+        (1, "Acme AI Gateway Expansion", 45000.00, "2024-02-14"),
+        (2, "Globex Vector Cloud Migration", 72000.00, "2024-03-01"),
+        (3, "Umbrella Biotech Edge Cluster", 105000.00, "2024-04-10"),
+    ]
+    cursor.executemany("INSERT INTO sales (rep_id, deal_name, amount, close_date) VALUES (?, ?, ?, ?)", sales_data)
+
+    # 8. Compliance Logs Table
+    cursor.execute("""
+    CREATE TABLE compliance_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        event_type TEXT NOT NULL,
+        status TEXT NOT NULL,
+        details TEXT NOT NULL
+    );
+    """)
+    logs_data = [
+        ("AUDIT_CHECK", "PASSED", "Prompt sanitized: No PII detected."),
+        ("SQL_GUARDRAIL", "BLOCKED", "Destructive command DROP TABLE intercepted."),
+        ("AUDIT_CHECK", "FLAGGED", "Potential promissory financial return detected."),
+    ]
+    cursor.executemany("INSERT INTO compliance_logs (event_type, status, details) VALUES (?, ?, ?)", logs_data)
+
     conn.commit()
     conn.close()
     print(f"[OK] Database seeded successfully at: {DB_PATH}")
@@ -189,6 +242,31 @@ Deploying large language models (LLMs) in production often encounters severe mem
 
 2. Parameter-Efficient Fine-Tuning (PEFT / LoRA)
 Low-Rank Adaptation (LoRA) freezes the pre-trained model weights and injects trainable rank decomposition matrices into each transformer layer (such as the query and value projection matrices). This slashes the number of trainable parameters by up to 99% while achieving performance parity with full parameter fine-tuning.
+""", encoding="utf-8")
+
+    doc_sec = DOCS_DIR / "security_policy.txt"
+    doc_sec.write_text("""
+Enterprise Information Security & LLM Ingestion Policy
+
+1. Scope
+This security policy applies to all automated agent pipelines, prompt completion services, and vector ingestion workloads across the enterprise.
+
+2. PII Sanitization
+No unmasked Personally Identifiable Information (PII) including Social Security Numbers, corporate credit card numbers, or internal email directories may be transmitted to external API endpoints without tokenization.
+
+3. Database Guardrails
+All agents executing SQL commands must run through an AST security parser. Operations containing DROP, DELETE, TRUNCATE, or ALTER will be aborted with a security exception.
+""", encoding="utf-8")
+
+    doc_fin = DOCS_DIR / "financial_compliance.txt"
+    doc_fin.write_text("""
+Financial Communications & Promissory Compliance Directive
+
+1. Regulatory Mandates
+In compliance with SEC, FINRA, and FTC guidelines, automated AI agents must never output speculative guarantees, promises of specific portfolio returns, or assurances of risk-free yields.
+
+2. Remediation
+Any generated text containing phrases like 'guaranteed return' or '100% risk-free' will be flagged by the Policy Compliance Agent and appended with a standard risk disclosure disclaimer.
 """, encoding="utf-8")
 
     print(f"[OK] Sample documents generated at: {DOCS_DIR}")
